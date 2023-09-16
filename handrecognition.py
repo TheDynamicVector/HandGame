@@ -80,11 +80,22 @@ with mp_hands.Hands(
             fingers.append([finger_tip_x, finger_tip_y, finger_mcp_x, finger_mcp_y, localDistance])
 
         #Make exception for thumb
-        c1 = math.sqrt((fingers[0][0]-fingers[1][0])**2 + (fingers[0][1]-fingers[1][1])**2)
-        c2 = math.sqrt((fingers[0][0]-fingers[0][2])**2 + (fingers[0][1]-fingers[0][3])**2)
-        c3 = math.sqrt((fingers[0][2]-fingers[1][0])**2 + (fingers[0][3]-fingers[1][1])**2)
+        c1 = round(math.sqrt((fingers[0][0]-fingers[1][0])**2 + (fingers[0][1]-fingers[1][1])**2))
+        c2 = round(math.sqrt((fingers[0][3]-fingers[1][3])**2 + (fingers[0][4]-fingers[1][4])**2))
+        c3 = round(math.sqrt((fingers[0][0]-fingers[0][2])**2 + (fingers[0][1]-fingers[0][3])**2))
+        print(c1)
+        print(c2)
+        print(c3)
 
-        thumb_to_indx_angle = degrees(math.acos((c1**2-c2**2-c3**2)/2*c2*c3))
+        num = pow(c1,2)+pow(c2,2)-pow(c3,2)
+        den = (2)*(c2)*(c3)
+        print(num)
+        print(pow(c1, 2))
+        print(pow(c2, 2))
+        print(pow(c3, 2))
+
+        print(num/den)
+        thumb_to_indx_angle = math.acos(num/den)
 
         fingers[0][4] = thumb_to_indx_angle
         
@@ -100,6 +111,7 @@ with mp_hands.Hands(
 
         #print([i[4] for i in fingers])
         print(fingers_open)
+
 
         # idx_mcp_x, idx_mcp_y = (1-idx_mcp.x)*640, idx_mcp.y * 480
         # idx_x, idx_y = (1-idx_tip.x) * 640, idx_tip.y * 480
