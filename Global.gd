@@ -6,7 +6,7 @@ var player_2_score = 0
 var player_1_gesture = ""
 var player_2_gesture = ""
 
-var game_started = true
+var game_started = false
 
 func _process(delta):
 	
