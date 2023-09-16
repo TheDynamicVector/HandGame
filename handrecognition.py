@@ -1,13 +1,18 @@
+
 import cv2
 import mediapipe as mp
 import math
 import os
-from math import atan2, degrees
+import json
 
 mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 mp_hands = mp.solutions.hands
 
+player_1_gesture = "none"
+player_2_gesture = "none"
+
+open("GestureData.txt", 'w').close()
 
 cap = cv2.VideoCapture(0)
 with mp_hands.Hands(
@@ -31,25 +36,7 @@ with mp_hands.Hands(
     image.flags.writeable = True
     image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
     if results.multi_hand_landmarks:
-      if len(results.multi_hand_landmarks) == 2:
-        thumb_point_0 = results.multi_hand_landmarks[0].landmark[4]
-        thumb_point_1 = results.multi_hand_landmarks[1].landmark[4]
-
-        thumb_point_0_x, thumb_point_0_y = thumb_point_0.x, thumb_point_0.y
-        thumb_point_1_x, thumb_point_1_y = thumb_point_1.x, thumb_point_1.y
-
-        handle_angle = atan2(thumb_point_0_x- thumb_point_1_x, thumb_point_0_y-thumb_point_1_y)
-        handle_angle = degrees(handle_angle) # 80 and 100 , mid is 90
-        
-        # if abs(handle_angle)<70:
-        #   keyboard.press_and_release('left')
-        #   print('left')
-        # elif abs(handle_angle)>120:
-        #   keyboard.press_and_release('right')
-        #   print('right')
  
-
-
       for hand_id, hand_landmarks in enumerate(results.multi_hand_landmarks):
         
 
@@ -87,7 +74,7 @@ with mp_hands.Hands(
         den = (2)*(c2)*(c3)
         thumb_to_indx_angle = 83
         try:
-            thumb_to_indx_angle = 1000/degrees(math.acos(num/den))
+            thumb_to_indx_angle = 1000/math.degrees(math.acos(num/den))
         except:
            thumb_to_indx_angle = 83
 
@@ -102,7 +89,7 @@ with mp_hands.Hands(
             else:
                 fingers_open.append(True)
 
-        gestures = ["zero", "one", "two", "three", "four", "five", "ready", "l"]
+        gestures = ["zero", "one", "two", "three", "four", "five", "ready", "l", "middle"]
         finger_combs = [
             [False, False, False, False, False], 
             [False, True, False, False, False],
@@ -111,7 +98,8 @@ with mp_hands.Hands(
             [False, True, True, True, True],
             [True, True, True, True, True],
             [True, False, False, False, False],
-            [True, True, False, False, False]
+            [True, True, False, False, False],
+            [False, False, True, False, False]
         ]
 
         if fingers_open in finger_combs:
@@ -120,8 +108,13 @@ with mp_hands.Hands(
         else:
            gesture = "none"
         
+        if fingers[0][0] <= 320:
+           player_2_gesture = gesture
+        else:
+           player_1_gesture = gesture
         
-        print(gesture)
+        with open("GestureData.txt", 'a') as the_file:
+            the_file.write(str([player_1_gesture, player_2_gesture]))
 
         mp_drawing.draw_landmarks(
             image,
@@ -132,15 +125,11 @@ with mp_hands.Hands(
 
     # Flip the image horizontally for a selfie-view display.
     cv2.imshow('MediaPipe Hands', cv2.flip(image, 1))
-    absolute_path = os.path.join(os.getcwd(), 'DSC_1902.JPG')
+    absolute_path = os.path.join(os.getcwd(), 'FeedImage.JPG')
     
     cv2.imwrite(absolute_path,image)
 
     if cv2.waitKey(5) & 0xFF == 27:
       break
+
 cap.release()
-
-
-def recognize_sign(results):
-  
-  pass
