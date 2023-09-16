@@ -12,7 +12,7 @@ mp_hands = mp.solutions.hands
 cap = cv2.VideoCapture(0)
 with mp_hands.Hands(
     model_complexity=0,
-    min_detection_confidence=0.6,
+    min_detection_confidence=0.8,
     min_tracking_confidence=0.6) as hands:
   while cap.isOpened():
     success, image = cap.read()
@@ -80,27 +80,20 @@ with mp_hands.Hands(
             fingers.append([finger_tip_x, finger_tip_y, finger_mcp_x, finger_mcp_y, localDistance])
 
         #Make exception for thumb
-        c1 = round(math.sqrt((fingers[0][0]-fingers[1][0])**2 + (fingers[0][1]-fingers[1][1])**2))
-        c2 = round(math.sqrt((fingers[0][3]-fingers[1][3])**2 + (fingers[0][4]-fingers[1][4])**2))
-        c3 = round(math.sqrt((fingers[0][0]-fingers[0][2])**2 + (fingers[0][1]-fingers[0][3])**2))
-        print(c1)
-        print(c2)
-        print(c3)
-
-        num = pow(c1,2)+pow(c2,2)-pow(c3,2)
+        c1 = round(math.sqrt((fingers[1][2]-fingers[0][0])**2 + (fingers[1][3]-fingers[0][1])**2))
+        c2 = round(math.sqrt((fingers[1][2]-fingers[0][2])**2 + (fingers[1][3]-fingers[0][3])**2))
+        c3 = round(math.sqrt((fingers[0][2]-fingers[0][0])**2 + (fingers[0][1]-fingers[0][3])**2))
+        num = pow(c1,2)-pow(c2,2)-pow(c3,2)
         den = (2)*(c2)*(c3)
-        print(num)
-        print(pow(c1, 2))
-        print(pow(c2, 2))
-        print(pow(c3, 2))
-
-        print(num/den)
-        thumb_to_indx_angle = math.acos(num/den)
-
-        fingers[0][4] = thumb_to_indx_angle
         
+        try:
+            thumb_to_indx_angle = degrees(math.acos(num/den))
+        except:
+           thumb_to_indx_angle = 90
 
-        threshholds = [70, 40, 50, 60, 40]
+        thumb_to_indx_angle = 10000/thumb_to_indx_angle
+        fingers[0][4] = thumb_to_indx_angle
+        threshholds = [85, 50, 60, 70, 50]
 
         fingers_open = []
         for i, x in enumerate(fingers):
@@ -109,28 +102,25 @@ with mp_hands.Hands(
             else:
                 fingers_open.append(True)
 
-        #print([i[4] for i in fingers])
-        print(fingers_open)
+        gestures = ["zero", "one", "two", "three", "four", "five", "ready", "l"]
+        finger_combs = [
+            [False, False, False, False, False], 
+            [False, True, False, False, False],
+            [False, True, True, False, False],
+            [False, True, True, True, False],
+            [False, True, True, True, True],
+            [True, True, True, True, True],
+            [True, False, False, False, False],
+            [True, True, False, False, False]
+        ]
 
-
-        # idx_mcp_x, idx_mcp_y = (1-idx_mcp.x)*640, idx_mcp.y * 480
-        # idx_x, idx_y = (1-idx_tip.x) * 640, idx_tip.y * 480
-        # mid_x, mid_y = (1-mid_tip.x) * 640, mid_tip.y * 480
-
-        # thmb_idx_dist = math.dist((thmb_x, thmb_y),(idx_x, idx_y))
-        # mid_idx_dist = math.dist((mid_x, mid_y),(idx_x, idx_y))
-        # idx_to_mcp_dist = math.dist((thmb_x, thmb_y),(idx_mcp_x, idx_mcp_y))
+        if fingers_open in finger_combs:
+            index = finger_combs.index(fingers_open)
+            gesture = gestures[index]
+        else:
+           gesture = "none"
         
-        # img = cv2.imread("lenna.png")
-        #crop_img = img[y:y+h, x:x+w]
-        #player_1_split = 
-        #player_1_res = recognize_sign()
-        
-        # if idx_to_mcp_dist<70:
-        #   if hand_id == 0:
-        #     print('down')
-        #   else:
-        #    print('up')
+        print(gesture)
 
         mp_drawing.draw_landmarks(
             image,
