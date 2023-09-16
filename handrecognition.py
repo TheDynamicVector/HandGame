@@ -72,23 +72,34 @@ with mp_hands.Hands(
         hand_landmarks.landmark[17]]
         x = 0
         for i in range(5):
-          finger_tip_x, finger_tip_y = (1-fingerValues[x].x)*640, fingerValues[x].y * 480
-          x += 1
-          finger_mcp_x, finger_mcp_y = (1-fingerValues[x].x)*640, fingerValues[x].y * 480
-          x += 1
-          localDistance = math.dist((finger_tip_x,finger_tip_y),(finger_mcp_x,finger_mcp_y))
-          fingers.append([finger_tip_x, finger_tip_y, finger_mcp_x, finger_mcp_y, localDistance])
+            finger_tip_x, finger_tip_y = (1-fingerValues[x].x)*640, fingerValues[x].y * 480
+            x += 1
+            finger_mcp_x, finger_mcp_y = (1-fingerValues[x].x)*640, fingerValues[x].y * 480
+            x += 1
+            localDistance = math.dist((finger_tip_x,finger_tip_y),(finger_mcp_x,finger_mcp_y))
+            fingers.append([finger_tip_x, finger_tip_y, finger_mcp_x, finger_mcp_y, localDistance])
+
+        #Make exception for thumb
+        c1 = math.sqrt((fingers[0][0]-fingers[1][0])**2 + (fingers[0][1]-fingers[1][1])**2)
+        c2 = math.sqrt((fingers[0][0]-fingers[0][2])**2 + (fingers[0][1]-fingers[0][3])**2)
+        c3 = math.sqrt((fingers[0][2]-fingers[1][0])**2 + (fingers[0][3]-fingers[1][1])**2)
+
+        thumb_to_indx_angle = degrees(math.acos((c1**2-c2**2-c3**2)/2*c2*c3))
+
+        fingers[0][4] = thumb_to_indx_angle
         
-        print([i[4] for i in fingers]) 
 
+        threshholds = [70, 40, 50, 60, 40]
 
+        fingers_open = []
+        for i, x in enumerate(fingers):
+            if x[4] < threshholds[i]:
+                fingers_open.append(False)
+            else:
+                fingers_open.append(True)
 
-        
-        
-    
-
-
-        
+        #print([i[4] for i in fingers])
+        print(fingers_open)
 
         # idx_mcp_x, idx_mcp_y = (1-idx_mcp.x)*640, idx_mcp.y * 480
         # idx_x, idx_y = (1-idx_tip.x) * 640, idx_tip.y * 480
