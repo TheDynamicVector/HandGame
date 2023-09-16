@@ -12,7 +12,7 @@ mp_hands = mp.solutions.hands
 cap = cv2.VideoCapture(0)
 with mp_hands.Hands(
     model_complexity=0,
-    min_detection_confidence=0.8,
+    min_detection_confidence=0.7,
     min_tracking_confidence=0.6) as hands:
   while cap.isOpened():
     success, image = cap.read()
@@ -85,15 +85,15 @@ with mp_hands.Hands(
         c3 = round(math.sqrt((fingers[0][2]-fingers[0][0])**2 + (fingers[0][1]-fingers[0][3])**2))
         num = pow(c1,2)-pow(c2,2)-pow(c3,2)
         den = (2)*(c2)*(c3)
-        
+        thumb_to_indx_angle = 83
         try:
-            thumb_to_indx_angle = degrees(math.acos(num/den))
+            thumb_to_indx_angle = 1000/degrees(math.acos(num/den))
         except:
-           thumb_to_indx_angle = 90
+           thumb_to_indx_angle = 83
 
-        thumb_to_indx_angle = 10000/thumb_to_indx_angle
+        #print(thumb_to_indx_angle)
         fingers[0][4] = thumb_to_indx_angle
-        threshholds = [85, 50, 60, 70, 50]
+        threshholds = [8, 50, 90, 70, 50]
 
         fingers_open = []
         for i, x in enumerate(fingers):
@@ -119,6 +119,7 @@ with mp_hands.Hands(
             gesture = gestures[index]
         else:
            gesture = "none"
+        
         
         print(gesture)
 
