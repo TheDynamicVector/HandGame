@@ -51,31 +51,56 @@ with mp_hands.Hands(
 
 
       for hand_id, hand_landmarks in enumerate(results.multi_hand_landmarks):
-        idx_tip = hand_landmarks.landmark[8]
-        idx_mcp = hand_landmarks.landmark[5]
-        thmb_tip = hand_landmarks.landmark[4]
-        mid_tip = hand_landmarks.landmark[12]
-
-        thmb_x, thmb_y = (1-thmb_tip.x)*640, thmb_tip.y * 480
-        idx_mcp_x, idx_mcp_y = (1-idx_mcp.x)*640, idx_mcp.y * 480
-        idx_x, idx_y = (1-idx_tip.x) * 640, idx_tip.y * 480
-        mid_x, mid_y = (1-mid_tip.x) * 640, mid_tip.y * 480
-
-        thmb_idx_dist = math.dist((thmb_x, thmb_y),(idx_x, idx_y))
-        mid_idx_dist = math.dist((mid_x, mid_y),(idx_x, idx_y))
-        idx_to_mcp_dist = math.dist((thmb_x, thmb_y),(idx_mcp_x, idx_mcp_y))
         
-        img = cv2.imread("lenna.png")
+
+        fingers = []
+        fingerValues = [
+        #thumb
+        hand_landmarks.landmark[4],
+        hand_landmarks.landmark[2],
+        #index
+        hand_landmarks.landmark[8],
+        hand_landmarks.landmark[5],
+        #middle
+        hand_landmarks.landmark[12],
+        hand_landmarks.landmark[9],
+        #ring
+        hand_landmarks.landmark[16],
+        hand_landmarks.landmark[13],
+        #pinky
+        hand_landmarks.landmark[20],
+        hand_landmarks.landmark[17]]
+        x = 0
+        for i in range(5):
+          finger_tip_x, finger_tip_y = (1-fingerValues[x].x)*640, fingerValues[x].y * 480
+          x += 1
+          finger_mcp_x, finger_mcp_y = (1-fingerValues[x].x)*640, fingerValues[x].y * 480
+          x += 1
+          fingers.append([finger_tip_x, finger_tip_y, finger_mcp_x, finger_mcp_y])
+        print(fingers)  
+        
+
+        
+
+        # idx_mcp_x, idx_mcp_y = (1-idx_mcp.x)*640, idx_mcp.y * 480
+        # idx_x, idx_y = (1-idx_tip.x) * 640, idx_tip.y * 480
+        # mid_x, mid_y = (1-mid_tip.x) * 640, mid_tip.y * 480
+
+        # thmb_idx_dist = math.dist((thmb_x, thmb_y),(idx_x, idx_y))
+        # mid_idx_dist = math.dist((mid_x, mid_y),(idx_x, idx_y))
+        # idx_to_mcp_dist = math.dist((thmb_x, thmb_y),(idx_mcp_x, idx_mcp_y))
+        
+        # img = cv2.imread("lenna.png")
         #crop_img = img[y:y+h, x:x+w]
         #player_1_split = 
         #player_1_res = recognize_sign()
         
         print(thmb_x)
-        #if idx_to_mcp_dist<70:
-          #if hand_id == 0:
-            #print('down')
-          #else:
-           # print('up')
+        if idx_to_mcp_dist<70:
+          if hand_id == 0:
+            print('down')
+          else:
+           print('up')
 
         mp_drawing.draw_landmarks(
             image,
