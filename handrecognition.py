@@ -76,9 +76,17 @@ with mp_hands.Hands(
           x += 1
           finger_mcp_x, finger_mcp_y = (1-fingerValues[x].x)*640, fingerValues[x].y * 480
           x += 1
-          fingers.append([finger_tip_x, finger_tip_y, finger_mcp_x, finger_mcp_y])
-        print(fingers)  
+          localDistance = math.dist((finger_tip_x,finger_tip_y),(finger_mcp_x,finger_mcp_y))
+          fingers.append([finger_tip_x, finger_tip_y, finger_mcp_x, finger_mcp_y, localDistance])
         
+        print([i[4] for i in fingers]) 
+
+
+
+        
+        
+    
+
 
         
 
@@ -95,12 +103,11 @@ with mp_hands.Hands(
         #player_1_split = 
         #player_1_res = recognize_sign()
         
-        print(thmb_x)
-        if idx_to_mcp_dist<70:
-          if hand_id == 0:
-            print('down')
-          else:
-           print('up')
+        # if idx_to_mcp_dist<70:
+        #   if hand_id == 0:
+        #     print('down')
+        #   else:
+        #    print('up')
 
         mp_drawing.draw_landmarks(
             image,
