@@ -3,17 +3,20 @@ extends Node
 var player_1_score = 0
 var player_2_score = 0
 
-var player_gestures = ["", ""]
+var player_1_gesture = ""
+var player_2_gesture = ""
 
-var current_game = "goose"
+
+var game_started = false
+
+
+var output = []
+
+var player_1_gestures = []
+var player_2_gestiures = []
 
 func _process(delta):
 	
-	var player_gestures = FileAccess.open("res://GestureData.txt", FileAccess.READ).get_as_text().split(",")
+	var gesture_text = FileAccess.open("res://GestureData.txt", FileAccess.READ).get_as_text()
+	#print(gesture_text)
 	
-	if current_game == "goose" and player_gestures.size() == 2:
-		
-		if player_gestures[0] == "zero":
-			$/root/dinosaurgame/Goose1.jump()
-		elif player_gestures[1] == "zero":
-			$/root/dinosaurgame/Goose2.jump()
