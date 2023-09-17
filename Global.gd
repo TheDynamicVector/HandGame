@@ -13,6 +13,11 @@ var gesture_texts = ["none", "none"]
 
 var game = "goose"
 
+var default_scene = "dinosaurgame"
+
+func _ready():
+	new_level()
+
 func _process(_delta):
 	
 	gesture_texts = FileAccess.open("res://GestureData.txt", FileAccess.READ).get_as_text().split(",")
@@ -40,6 +45,8 @@ func end_round(player_won):
 		if player_2_score == 3:
 			pass
 func new_level():
-	get_tree().change_scene_to_file("res://Levels/dinosaurgame.tscn")
+
+	get_tree().change_scene_to_file("res://Levels/d"+default_scene+".tscn")
+	get_tree().reload_current_scene()
 	WinRoundUi.visible = false
 	get_tree().paused = false
