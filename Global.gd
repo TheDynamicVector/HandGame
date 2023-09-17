@@ -13,9 +13,9 @@ var gesture_texts = ["none", "none"]
 
 var game = "goose"
 
-func _process(delta):
+func _process(_delta):
 	
-	var gesture_texts = FileAccess.open("res://GestureData.txt", FileAccess.READ).get_as_text().split(",")
+	gesture_texts = FileAccess.open("res://GestureData.txt", FileAccess.READ).get_as_text().split(",")
 	#print(gesture_text)
 	
 	if game == "goose" and gesture_texts.size() == 2:
@@ -25,4 +25,21 @@ func _process(delta):
 			
 		if gesture_texts[1] == "zero":
 			$/root/dinosaurgame/Goose2.jump()
+
+func end_round(player_won):
 	
+	get_tree().paused = true
+	WinRoundUi.visible = true
+	
+	if player_won == 1:
+		player_1_score += 1
+		if player_1_score == 3:
+			pass
+	else:
+		player_2_score += 1
+		if player_2_score == 3:
+			pass
+func new_level():
+	get_tree().change_scene_to_file("res://Levels/dinosaurgame.tscn")
+	WinRoundUi.visible = false
+	get_tree().paused = false

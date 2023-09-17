@@ -4,7 +4,7 @@ var frozen = false
 
 var SPEED = 3
 const direction = -1
-func _physics_process(delta):
+func _physics_process(_delta):
 	
 	if not frozen:
 		position.x += direction * SPEED
@@ -21,8 +21,6 @@ func _physics_process(delta):
 
 func _on_body_entered(body):
 	if body.is_in_group('Player1'):
-		print('Player 2 won')
-		#get_tree().paused = !get_tree().paused
+		Global.end_round(1)
 	elif body.is_in_group('Player2'):
-		#get_tree().paused = !get_tree().paused
-		print("Player 1 won")
+		Global.end_round(2)

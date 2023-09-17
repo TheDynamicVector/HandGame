@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2p04bea38yhs"]
+
+[ext_resource type="Texture2D" uid="uid://c1f07ij02kp8" path="res://sprites/bg.png" id="1_nh71w"]
+[ext_resource type="Texture2D" uid="uid://drs2ku6r4et50" path="res://sprites/New Piskel-1.png.png" id="2_1rux5"]
+[ext_resource type="Script" path="res://Scripts/NextButton.gd" id="3_hpk8i"]
+
+[node name="WinRoundUI" type="Control"]
+process_mode = 3
+visible = false
+z_index = 4096
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+modulate = Color(0.309804, 0.309804, 0.309804, 1)
+layout_mode = 0
+offset_left = 128.0
+offset_top = -210.0
+offset_right = 640.0
+offset_bottom = 302.0
+scale = Vector2(0.471626, 0.636051)
+texture = ExtResource("1_nh71w")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 182.0
+offset_top = -210.0
+offset_right = 694.0
+offset_bottom = 302.0
+scale = Vector2(0.284772, 0.364312)
+texture = ExtResource("2_1rux5")
+
+[node name="WinText" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 160.0
+offset_top = -104.0
+offset_right = 467.0
+offset_bottom = -22.0
+scale = Vector2(0.629955, 0.621573)
+theme_override_font_sizes/normal_font_size = 45
+text = "Player 1 won"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 138.0
+offset_top = -55.0
+offset_right = 466.0
+offset_bottom = 69.0
+scale = Vector2(0.676318, 0.674977)
+text = "next"
+script = ExtResource("3_hpk8i")
+
+[connection signal="button_down" from="Button" to="Button" method="_on_button_down"]

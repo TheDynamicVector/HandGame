@@ -1,1 +1,1 @@
-ready,middle
+zero,ready

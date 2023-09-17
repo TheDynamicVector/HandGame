@@ -1,11 +1,11 @@
 [gd_scene load_steps=13 format=3 uid="uid://ciagy2f5687w3"]
 
-[ext_resource type="Texture2D" uid="uid://c1f07ij02kp8" path="res://sprites/bg.png" id="1_0hkbx"]
-[ext_resource type="Script" path="res://Scripts/CharacterBody2D.gd" id="1_a4l87"]
-[ext_resource type="Texture2D" uid="uid://vw24sm3c1xg5" path="res://sprites/duck.png" id="2_orvsf"]
-[ext_resource type="Script" path="res://Scripts/gear.gd" id="4_e2637"]
-[ext_resource type="Texture2D" uid="uid://b6flbo0s8mgws" path="res://sprites/grass.png" id="4_ks0x6"]
-[ext_resource type="Texture2D" uid="uid://bxcbrawfu875f" path="res://sprites/gear.png" id="5_s2iqi"]
+[ext_resource type="Texture2D" uid="uid://c1f07ij02kp8" path="res://sprites/bg.png" id="1_80ysx"]
+[ext_resource type="Script" path="res://Scripts/CharacterBody2D.gd" id="2_rg58i"]
+[ext_resource type="Texture2D" uid="uid://vw24sm3c1xg5" path="res://sprites/duck.png" id="3_a8s8k"]
+[ext_resource type="Texture2D" uid="uid://b6flbo0s8mgws" path="res://sprites/grass.png" id="4_q2ghm"]
+[ext_resource type="Script" path="res://Scripts/gear.gd" id="5_fhan8"]
+[ext_resource type="Texture2D" uid="uid://bxcbrawfu875f" path="res://sprites/gear.png" id="6_axh3g"]
 
 [sub_resource type="Animation" id="Animation_x0i2k"]
 resource_name = "walk"
@@ -47,13 +47,13 @@ size = Vector2(31.4451, 25.896)
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(243, -114)
 scale = Vector2(5.18125, 1.91875)
-texture = ExtResource("1_0hkbx")
+texture = ExtResource("1_80ysx")
 
 [node name="Goose1" type="CharacterBody2D" parent="." groups=["Player1"]]
-script = ExtResource("1_a4l87")
+script = ExtResource("2_rg58i")
 
 [node name="Sprite2D" type="Sprite2D" parent="Goose1"]
-texture = ExtResource("2_orvsf")
+texture = ExtResource("3_a8s8k")
 hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Goose1"]
@@ -67,11 +67,11 @@ position = Vector2(-10.5, 4.5)
 shape = SubResource("RectangleShape2D_wgwuo")
 
 [node name="Goose2" type="CharacterBody2D" parent="." groups=["Player2"]]
-script = ExtResource("1_a4l87")
+script = ExtResource("2_rg58i")
 
 [node name="Sprite2D" type="Sprite2D" parent="Goose2"]
 position = Vector2(0, -179)
-texture = ExtResource("2_orvsf")
+texture = ExtResource("3_a8s8k")
 hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Goose2"]
@@ -94,7 +94,7 @@ shape = SubResource("RectangleShape2D_oiqrr")
 [node name="Sprite2D" type="Sprite2D" parent="Ground"]
 position = Vector2(202.5, -123)
 scale = Vector2(4.65625, 0.2125)
-texture = ExtResource("4_ks0x6")
+texture = ExtResource("4_q2ghm")
 
 [node name="Ground2" type="StaticBody2D" parent="."]
 position = Vector2(0, -28)
@@ -106,7 +106,7 @@ shape = SubResource("RectangleShape2D_n6etn")
 [node name="Sprite2D2" type="Sprite2D" parent="Ground2"]
 position = Vector2(201.25, 94)
 scale = Vector2(4.65938, 0.3375)
-texture = ExtResource("4_ks0x6")
+texture = ExtResource("4_q2ghm")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(244, -86)
@@ -116,10 +116,10 @@ zoom = Vector2(3, 3)
 [node name="gear2" type="Area2D" parent="."]
 position = Vector2(620.75, 16.25)
 scale = Vector2(0.540625, 0.540625)
-script = ExtResource("4_e2637")
+script = ExtResource("5_fhan8")
 
 [node name="Sprite2D" type="Sprite2D" parent="gear2"]
-texture = ExtResource("5_s2iqi")
+texture = ExtResource("6_axh3g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="gear2"]
 position = Vector2(-2.31213, -6.01156)
@@ -128,10 +128,10 @@ shape = SubResource("RectangleShape2D_4spm7")
 [node name="gear3" type="Area2D" parent="."]
 position = Vector2(616, -163)
 scale = Vector2(0.540625, 0.540625)
-script = ExtResource("4_e2637")
+script = ExtResource("5_fhan8")
 
 [node name="Sprite2D" type="Sprite2D" parent="gear3"]
-texture = ExtResource("5_s2iqi")
+texture = ExtResource("6_axh3g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="gear3"]
 position = Vector2(-3.237, -7.86127)
@@ -140,10 +140,10 @@ shape = SubResource("RectangleShape2D_4spm7")
 [node name="gear4" type="Area2D" parent="."]
 position = Vector2(783, 19)
 scale = Vector2(0.540625, 0.540625)
-script = ExtResource("4_e2637")
+script = ExtResource("5_fhan8")
 
 [node name="Sprite2D" type="Sprite2D" parent="gear4"]
-texture = ExtResource("5_s2iqi")
+texture = ExtResource("6_axh3g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="gear4"]
 position = Vector2(-3.237, -7.86127)
@@ -152,10 +152,10 @@ shape = SubResource("RectangleShape2D_4spm7")
 [node name="gear5" type="Area2D" parent="."]
 position = Vector2(787, -166)
 scale = Vector2(0.540625, 0.540625)
-script = ExtResource("4_e2637")
+script = ExtResource("5_fhan8")
 
 [node name="Sprite2D" type="Sprite2D" parent="gear5"]
-texture = ExtResource("5_s2iqi")
+texture = ExtResource("6_axh3g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="gear5"]
 position = Vector2(-3.237, -7.86127)
