@@ -1,6 +1,6 @@
 extends Node
 
-var player_1_score = 0
+var player_1_score = -1
 var player_2_score = 0
 
 var player_1_gesture = ""
@@ -11,12 +11,9 @@ var game_started = false
 
 var gesture_texts = ["none", "none"]
 
-var game = "frogger"
+var game = ""
 
-var default_scene = "frogger"
-
-func _ready():
-	new_level()
+var all_games = ["frogger", "dinasaur", "numbers"]
 
 func _process(_delta):
 	
@@ -44,9 +41,11 @@ func end_round(player_won):
 		player_2_score += 1
 		if player_2_score == 3:
 			pass
+
 func new_level():
 
-	get_tree().change_scene_to_file("res://Levels/"+default_scene+".tscn")
-	get_tree().reload_current_scene()
+	game = all_games.pick_random()
+	all_games.pop_at(all_games.find(game))
+	get_tree().change_scene_to_file("res://Levels/"+game+".tscn")
 	WinRoundUi.visible = false
 	get_tree().paused = false

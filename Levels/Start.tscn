@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://cccusum1586o8"]
+
+[ext_resource type="Script" path="res://Scripts/Start.gd" id="1_j8p6w"]
+[ext_resource type="Script" path="res://Scripts/Exit.gd" id="2_3qoj1"]
+
+[node name="Start" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Start" type="Button" parent="."]
+layout_mode = 0
+offset_left = 118.0
+offset_top = 48.0
+offset_right = 163.0
+offset_bottom = 79.0
+scale = Vector2(4.35476, 4.27393)
+text = "start"
+script = ExtResource("1_j8p6w")
+
+[node name="Exit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 114.0
+offset_top = 198.0
+offset_right = 159.0
+offset_bottom = 229.0
+scale = Vector2(4.35476, 4.27393)
+text = "Exit"
+script = ExtResource("2_3qoj1")
+
+[connection signal="pressed" from="Start" to="Start" method="_on_pressed"]
+[connection signal="pressed" from="Exit" to="Exit" method="_on_pressed"]
