@@ -42,7 +42,7 @@ size = Vector2(836, 34.25)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4spm7"]
 size = Vector2(69.9711, 67.341)
 
-[node name="dinosaur game" type="Node2D"]
+[node name="dinosaurgame" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(243, -114)

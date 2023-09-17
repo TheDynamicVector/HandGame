@@ -12,7 +12,8 @@ mp_hands = mp.solutions.hands
 player_1_gesture = "none"
 player_2_gesture = "none"
 
-open("GestureData.txt", 'w').close()
+with open("GestureData.txt", 'w') as the_file:
+    the_file.write("none" + "," + "none")
 
 cap = cv2.VideoCapture(0)
 with mp_hands.Hands(
@@ -114,9 +115,7 @@ with mp_hands.Hands(
            player_1_gesture = gesture
 
         with open("GestureData.txt", 'w') as the_file:
-            the_file.write([player_1_gesture, player_2_gesture])
-
-        print(gesture)
+            the_file.write(player_1_gesture + "," + player_2_gesture)
 
         mp_drawing.draw_landmarks(
             image,
