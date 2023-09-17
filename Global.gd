@@ -15,10 +15,6 @@ var output = []
 var player_1_gestures = []
 var player_2_gestiures = []
 
-func _ready():
-
-	OS.execute("python", ["/handrecognition.py"], output)
-
 
 func _process(delta):
 	
