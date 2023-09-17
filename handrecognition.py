@@ -18,7 +18,7 @@ with open("GestureData.txt", 'w') as the_file:
 cap = cv2.VideoCapture(0)
 with mp_hands.Hands(
     model_complexity=0,
-    min_detection_confidence=0.7,
+    min_detection_confidence=0.5,
     min_tracking_confidence=0.6) as hands:
   while cap.isOpened():
     success, image = cap.read()
@@ -126,9 +126,6 @@ with mp_hands.Hands(
 
     # Flip the image horizontally for a selfie-view display.
     cv2.imshow('MediaPipe Hands', cv2.flip(image, 1))
-    absolute_path = os.path.join(os.getcwd(), 'FeedImage.JPG')
-    
-    cv2.imwrite(absolute_path,image)
 
     if cv2.waitKey(5) & 0xFF == 27:
       break

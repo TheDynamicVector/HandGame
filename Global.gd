@@ -13,7 +13,7 @@ var gesture_texts = ["none", "none"]
 
 var game = ""
 
-var default_scene = "frogger"
+var ready_ind_on = false
 
 func _ready():
 	await get_tree().create_timer(1).timeout
@@ -31,7 +31,8 @@ func _process(_delta):
 	gesture_texts = FileAccess.open("res://GestureData.txt", FileAccess.READ).get_as_text().split(",")
 	#print(gesture_text)
 	
-	if game == "goose" and gesture_texts.size() == 2:
+	
+	if game == "dinosaurgame" and gesture_texts.size() == 2:
 		
 		if gesture_texts[0] == "zero":
 			$/root/dinosaurgame/Goose1.jump()
@@ -39,26 +40,27 @@ func _process(_delta):
 		if gesture_texts[1] == "zero":
 			$/root/dinosaurgame/Goose2.jump()
 	
-	if game == 'numbergame' and gesture_texts.size() == 2 and gameInitialize: 
+	if game == 'numbersgame' and gesture_texts.size() == 2 and gameInitialize: 
 		
-		if gesture_texts[0] == possibleNumbers[$/root/numbergame.number1]:
-			$/root/numbergame.numberSpawn1.queue_free()
-			$/root/numbergame.numberSpawn2.queue_free()
+		var numbersgameparent = $/root/numbersgame
+		if gesture_texts[0] == possibleNumbers[numbersgameparent.number1] and not cooldownP1:
+			numbersgameparent.numberSpawn1.queue_free()
+			numbersgameparent.numberSpawn2.queue_free()
+			numbersgameparent.p1score += 1
 			if not cooldownP1:
 				cooldownP1 = true
-				$/root/numbergame.p1score += 1
 				cooldownP1 = false
-			$/root/numbergame.newRound = true
+			numbersgameparent.newRound = true
 
 			
-		if gesture_texts[1] == possibleNumbers[$/root/numbergame.number2]:
-			$/root/numbergame.numberSpawn1.queue_free()
-			$/root/numbergame.numberSpawn2.queue_free()
+		if gesture_texts[1] == possibleNumbers[numbersgameparent.number2] and not cooldownP2:
+			numbersgameparent.numberSpawn1.queue_free()
+			numbersgameparent.numberSpawn2.queue_free()
+			numbersgameparent.p2score += 1
 			if not cooldownP2:
 				cooldownP2 = true
-				$/root/numbergame.p2score += 1
 				cooldownP1 = false
-			$/root/numbergame.newRound = true
+			numbersgameparent.newRound = true
 			
 			
 		
@@ -80,14 +82,12 @@ func end_round(player_won):
 	get_tree().paused = true
 	WinRoundUi.visible = true
 	
+	WinRoundUi.get_node("WinText").text = "player " + str(player_won) + " won"
+	
 	if player_won == 1:
 		player_1_score += 1
-		if player_1_score == 3:
-			pass
 	else:
 		player_2_score += 1
-		if player_2_score == 3:
-			pass
 
 func new_level():
 
@@ -98,7 +98,8 @@ func new_level():
 			winning_player = 2
 		
 		get_tree().change_scene_to_file("res://Levels/End.tscn")
-		$/root/Start/Results.text = "Player " + str(winning_player) + " WON!"
+		await get_tree().create_timer(1).timeout
+		$/root/End/Results.text = "Player " + str(winning_player) + " WON!"
 		return
 		
 	game = game_list.pick_random()

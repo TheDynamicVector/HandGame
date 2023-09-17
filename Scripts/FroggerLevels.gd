@@ -25,4 +25,4 @@ func _process(delta):
 
 func _on_speed_up_timer_timeout():
 	level_speed *= 1.3
-	$SpeedUpTimer.wait_time *= 0.75
+	get_parent().get_node("SpeedUpTimer").wait_time *= 0.75

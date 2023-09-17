@@ -35,7 +35,6 @@ size = Vector2(60.2584, 81.2787)
 [node name="frogger" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(1, 2)
 zoom = Vector2(3, 3)
 
 [node name="BGS" type="Node2D" parent="."]
@@ -89,5 +88,8 @@ shape = SubResource("RectangleShape2D_gvq0c")
 
 [node name="SpeedUpTimer" type="Timer" parent="."]
 wait_time = 5.0
+autostart = true
+
+[node name="UIOrigin" type="Node2D" parent="."]
 
 [connection signal="timeout" from="SpeedUpTimer" to="BGS" method="_on_speed_up_timer_timeout"]

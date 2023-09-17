@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Exit.gd" id="2_pfvv6"]
 [ext_resource type="Script" path="res://Scripts/Rematch.gd" id="2_uwwr1"]
 
-[node name="Start" type="Control"]
+[node name="End" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

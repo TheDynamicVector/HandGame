@@ -34,6 +34,10 @@ func _process(delta):
 
 		newRound = false
 	
+		if p1score == 10:
+			Global.end_round(1)
+		elif p2score == 10:
+			Global.end_round(2)
 
 		
 		

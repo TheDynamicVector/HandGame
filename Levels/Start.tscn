@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cccusum1586o8"]
+[gd_scene load_steps=6 format=3 uid="uid://cccusum1586o8"]
 
 [ext_resource type="Script" path="res://Scripts/Start.gd" id="1_j8p6w"]
 [ext_resource type="Script" path="res://Scripts/Exit.gd" id="2_3qoj1"]
+[ext_resource type="Texture2D" uid="uid://dcde5umvwqxw5" path="res://sprites/Exit.png" id="2_rop6p"]
+[ext_resource type="Texture2D" uid="uid://d21ersnsk6dg3" path="res://sprites/Start.png" id="2_xa2vu"]
+[ext_resource type="Texture2D" uid="uid://cfygydqabs2i8" path="res://sprites/Intro.png" id="4_kmt8s"]
 
 [node name="Start" type="Control"]
 layout_mode = 3
@@ -11,24 +14,35 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 307.0
+offset_top = -11.0
+offset_right = 1177.0
+offset_bottom = 661.0
+scale = Vector2(1.54599, 1.61765)
+texture = ExtResource("4_kmt8s")
+
 [node name="Start" type="Button" parent="."]
 layout_mode = 0
-offset_left = 118.0
-offset_top = 48.0
-offset_right = 163.0
-offset_bottom = 79.0
-scale = Vector2(4.35476, 4.27393)
-text = "start"
+offset_left = 498.0
+offset_top = 153.0
+offset_right = 686.0
+offset_bottom = 301.0
+scale = Vector2(1.02792, 1.00884)
+icon = ExtResource("2_xa2vu")
+flat = true
 script = ExtResource("1_j8p6w")
 
 [node name="Exit" type="Button" parent="."]
 layout_mode = 0
-offset_left = 114.0
-offset_top = 198.0
-offset_right = 159.0
-offset_bottom = 229.0
-scale = Vector2(4.35476, 4.27393)
-text = "Exit"
+offset_left = 498.0
+offset_top = 284.0
+offset_right = 686.0
+offset_bottom = 432.0
+scale = Vector2(1.04906, 1.09281)
+icon = ExtResource("2_rop6p")
+flat = true
 script = ExtResource("2_3qoj1")
 
 [connection signal="pressed" from="Start" to="Start" method="_on_pressed"]
