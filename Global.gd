@@ -15,11 +15,6 @@ var output = []
 var player_1_gestures = []
 var player_2_gestiures = []
 
-func _ready():
-
-	OS.execute("python", ["/handrecognition.py"], output)
-
-
 func _process(delta):
 	
 	var gesture_text = FileAccess.open("res://GestureData.txt", FileAccess.READ).get_as_text()

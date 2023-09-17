@@ -112,9 +112,9 @@ with mp_hands.Hands(
            player_2_gesture = gesture
         else:
            player_1_gesture = gesture
-        
-        with open("GestureData.txt", 'a') as the_file:
-            the_file.write(str([player_1_gesture, player_2_gesture]))
+
+        with open("GestureData.txt", 'w') as the_file:
+            the_file.write([player_1_gesture, player_2_gesture])
 
         mp_drawing.draw_landmarks(
             image,
