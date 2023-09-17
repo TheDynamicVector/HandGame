@@ -1,0 +1,88 @@
+[gd_scene load_steps=9 format=3 uid="uid://ded2lv53ri3ba"]
+
+[ext_resource type="Script" path="res://Scripts/FroggerLevels.gd" id="1_3mvui"]
+[ext_resource type="PackedScene" uid="uid://bor3eo515oqxk" path="res://Nodes/Frogger0.tscn" id="1_qccsr"]
+[ext_resource type="Texture2D" uid="uid://c3fmur723td67" path="res://sprites/Chick.png" id="3_f10ty"]
+[ext_resource type="PackedScene" uid="uid://c8n0kj344tua6" path="res://Nodes/Frogger1.tscn" id="3_y3j0g"]
+[ext_resource type="Script" path="res://Scripts/Chick.gd" id="4_vciou"]
+
+[sub_resource type="Animation" id="Animation_x0i2k"]
+resource_name = "walk"
+length = 0.4
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rby3a"]
+_data = {
+"walk": SubResource("Animation_x0i2k")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gvq0c"]
+size = Vector2(65, 86)
+
+[node name="frogger" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1, 2)
+zoom = Vector2(3, 3)
+
+[node name="BGS" type="Node2D" parent="."]
+script = ExtResource("1_3mvui")
+
+[node name="BG" parent="BGS" instance=ExtResource("1_qccsr")]
+position = Vector2(0, 8)
+
+[node name="BG2" parent="BGS" instance=ExtResource("3_y3j0g")]
+position = Vector2(0, -371)
+
+[node name="Bird1" type="Area2D" parent="." groups=["Player1"]]
+position = Vector2(-176, 7)
+scale = Vector2(0.713594, 0.713594)
+script = ExtResource("4_vciou")
+player_index = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Bird1"]
+texture = ExtResource("3_f10ty")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Bird1"]
+autoplay = "walk"
+libraries = {
+"": SubResource("AnimationLibrary_rby3a")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bird1"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_gvq0c")
+
+[node name="Bird2" type="Area2D" parent="." groups=["Player1"]]
+position = Vector2(177, 13)
+scale = Vector2(0.713594, 0.713594)
+script = ExtResource("4_vciou")
+player_index = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Bird2"]
+texture = ExtResource("3_f10ty")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Bird2"]
+autoplay = "walk"
+libraries = {
+"": SubResource("AnimationLibrary_rby3a")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bird2"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_gvq0c")

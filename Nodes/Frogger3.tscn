@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://xe30dc1tet10"]
+
+[ext_resource type="Texture2D" uid="uid://ihpqvlc7ug76" path="res://sprites/Frogger3.png" id="1_x5vuo"]
+[ext_resource type="Script" path="res://Scripts/gear.gd" id="2_gkuka"]
+[ext_resource type="Texture2D" uid="uid://b8yg2uwhbluxm" path="res://sprites/Boatman.png" id="3_djy36"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jj265"]
+size = Vector2(130.307, 82.299)
+
+[node name="BG" type="Sprite2D"]
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("1_x5vuo")
+
+[node name="Boat" type="Area2D" parent="."]
+position = Vector2(-1048.57, -142.857)
+scale = Vector2(1.2498, 1.2498)
+script = ExtResource("2_gkuka")
+SPEED = -3
+bound_original = 1000
+bound = -1000
+
+[node name="Sprite2D" type="Sprite2D" parent="Boat"]
+modulate = Color(0.623529, 0.576471, 0.607843, 1)
+texture = ExtResource("3_djy36")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boat"]
+position = Vector2(1.14349, 4.57216)
+shape = SubResource("RectangleShape2D_jj265")
+
+[node name="Boat2" type="Area2D" parent="."]
+position = Vector2(-271.429, -128.571)
+scale = Vector2(1.2498, 1.2498)
+script = ExtResource("2_gkuka")
+SPEED = -3
+bound_original = 1000
+bound = -1000
+
+[node name="Sprite2D" type="Sprite2D" parent="Boat2"]
+modulate = Color(0.623529, 0.576471, 0.607843, 1)
+texture = ExtResource("3_djy36")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boat2"]
+position = Vector2(1.14349, 4.57216)
+shape = SubResource("RectangleShape2D_jj265")
+
+[node name="Boat3" type="Area2D" parent="."]
+position = Vector2(280, -122.857)
+scale = Vector2(1.2498, 1.2498)
+script = ExtResource("2_gkuka")
+SPEED = -3
+bound_original = 1000
+bound = -1000
+
+[node name="Sprite2D" type="Sprite2D" parent="Boat3"]
+modulate = Color(0.623529, 0.576471, 0.607843, 1)
+texture = ExtResource("3_djy36")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boat3"]
+position = Vector2(1.14349, 4.57216)
+shape = SubResource("RectangleShape2D_jj265")
+
+[connection signal="body_entered" from="Boat" to="Boat" method="_on_body_entered"]
+[connection signal="body_entered" from="Boat2" to="Boat2" method="_on_body_entered"]
+[connection signal="body_entered" from="Boat3" to="Boat3" method="_on_body_entered"]

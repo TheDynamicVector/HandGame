@@ -11,9 +11,9 @@ var game_started = false
 
 var gesture_texts = ["none", "none"]
 
-var game = "goose"
+var game = "frogger"
 
-var default_scene = "dinosaurgame"
+var default_scene = "frogger"
 
 func _ready():
 	new_level()
