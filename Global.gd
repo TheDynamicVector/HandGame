@@ -18,7 +18,9 @@ var default_scene = "frogger"
 func _ready():
 	await get_tree().create_timer(1).timeout
 	gameInitialize = true
+	
 var all_games = ["frogger", "dinosaurgame", "numbersgame"]
+var game_list = all_games
 
 var possibleNumbers = ['zero','one','two','three','four','five']
 var gameInitialize = false
@@ -89,8 +91,25 @@ func end_round(player_won):
 
 func new_level():
 
-	game = all_games.pick_random()
-	all_games.pop_at(all_games.find(game))
+	if game_list == []:
+		
+		var winning_player = 1
+		if player_2_score > player_1_score:
+			winning_player = 2
+		
+		get_tree().change_scene_to_file("res://Levels/End.tscn")
+		$/root/Start/Results.text = "Player " + str(winning_player) + " WON!"
+		return
+		
+	game = game_list.pick_random()
+	game_list.pop_at(game_list.find(game))
 	get_tree().change_scene_to_file("res://Levels/"+game+".tscn")
 	WinRoundUi.visible = false
 	get_tree().paused = false
+
+func reset_game():
+	
+	game_list = all_games
+	player_1_score = 0
+	player_2_score = 0
+	new_level()

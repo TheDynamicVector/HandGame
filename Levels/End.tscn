@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnh60d6aowx4u"]
+
+[ext_resource type="Script" path="res://Scripts/Exit.gd" id="2_pfvv6"]
+[ext_resource type="Script" path="res://Scripts/Rematch.gd" id="2_uwwr1"]
+
+[node name="Start" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Exit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 862.0
+offset_top = 700.0
+offset_right = 907.0
+offset_bottom = 731.0
+scale = Vector2(4.35476, 4.27393)
+text = "Exit"
+script = ExtResource("2_pfvv6")
+
+[node name="Rematch" type="Button" parent="."]
+layout_mode = 0
+offset_left = 792.0
+offset_top = 530.0
+offset_right = 869.0
+offset_bottom = 561.0
+scale = Vector2(4.35476, 4.27393)
+text = "Rematch"
+script = ExtResource("2_uwwr1")
+
+[node name="Results" type="RichTextLabel" parent="."]
+offset_left = 639.0
+offset_top = 291.0
+offset_right = 1335.0
+offset_bottom = 503.0
+theme_override_font_sizes/normal_font_size = 99
+text = "Player 2 WON!"
+scroll_active = false
+
+[connection signal="pressed" from="Exit" to="Exit" method="_on_pressed"]
+[connection signal="pressed" from="Rematch" to="Rematch" method="_on_pressed"]
