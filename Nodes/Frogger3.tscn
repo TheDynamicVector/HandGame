@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://xe30dc1tet10"]
+[gd_scene load_steps=6 format=3 uid="uid://dfhlijwgrfc11"]
 
-[ext_resource type="Texture2D" uid="uid://ihpqvlc7ug76" path="res://sprites/Frogger3.png" id="1_x5vuo"]
+[ext_resource type="Texture2D" path="res://sprites/Frogger3.png" id="1_x5vuo"]
 [ext_resource type="Script" path="res://Scripts/gear.gd" id="2_gkuka"]
-[ext_resource type="Texture2D" uid="uid://b8yg2uwhbluxm" path="res://sprites/Boatman.png" id="3_djy36"]
+[ext_resource type="Script" path="res://Scripts/Car.gd" id="2_q6g5l"]
+[ext_resource type="Texture2D" path="res://sprites/Boatman.png" id="3_djy36"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jj265"]
 size = Vector2(130.307, 82.299)
@@ -12,12 +13,11 @@ scale = Vector2(0.35, 0.35)
 texture = ExtResource("1_x5vuo")
 
 [node name="Boat" type="Area2D" parent="."]
-position = Vector2(-1048.57, -142.857)
+position = Vector2(-945.714, -122.857)
 scale = Vector2(1.2498, 1.2498)
-script = ExtResource("2_gkuka")
-SPEED = -3
-bound_original = 1000
-bound = -1000
+script = ExtResource("2_q6g5l")
+bound_original = -1000
+bound = 1000
 
 [node name="Sprite2D" type="Sprite2D" parent="Boat"]
 modulate = Color(0.623529, 0.576471, 0.607843, 1)
@@ -32,8 +32,8 @@ position = Vector2(-271.429, -128.571)
 scale = Vector2(1.2498, 1.2498)
 script = ExtResource("2_gkuka")
 SPEED = -3
-bound_original = 1000
-bound = -1000
+bound_original = -1000
+bound = 1000
 
 [node name="Sprite2D" type="Sprite2D" parent="Boat2"]
 modulate = Color(0.623529, 0.576471, 0.607843, 1)
@@ -48,8 +48,8 @@ position = Vector2(280, -122.857)
 scale = Vector2(1.2498, 1.2498)
 script = ExtResource("2_gkuka")
 SPEED = -3
-bound_original = 1000
-bound = -1000
+bound_original = -1000
+bound = 1000
 
 [node name="Sprite2D" type="Sprite2D" parent="Boat3"]
 modulate = Color(0.623529, 0.576471, 0.607843, 1)

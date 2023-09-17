@@ -86,3 +86,8 @@ libraries = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bird2"]
 position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_gvq0c")
+
+[node name="SpeedUpTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="timeout" from="SpeedUpTimer" to="BGS" method="_on_speed_up_timer_timeout"]

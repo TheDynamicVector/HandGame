@@ -1,7 +1,6 @@
 extends Node2D
 
-var level_speed = 3.0
-
+var level_speed = 1.0
 
 func _process(delta):
 	
@@ -21,3 +20,9 @@ func _process(delta):
 			i.queue_free()
 			
 			lvl.position.y -= 380
+
+
+
+func _on_speed_up_timer_timeout():
+	level_speed *= 1.3
+	$SpeedUpTimer.wait_time *= 0.75
