@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bor3eo515oqxk"]
+[gd_scene load_steps=2 format=3 uid="uid://e50ahvbprsjj"]
 
-[ext_resource type="Texture2D" uid="uid://bav7v8bjj5jsy" path="res://sprites/FroggerClear.png" id="1_p3pdi"]
+[ext_resource type="Texture2D" path="res://sprites/FroggerClear.png" id="1_p3pdi"]
 
 [node name="BG" type="Sprite2D"]
 scale = Vector2(0.35, 0.35)

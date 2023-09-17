@@ -1,1 +1,1 @@
-zero,ready
+zero,none

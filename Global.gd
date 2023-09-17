@@ -30,6 +30,18 @@ func _process(_delta):
 			
 		if gesture_texts[1] == "zero":
 			$/root/dinosaurgame/Goose2.jump()
+			
+	if game == "frogger" and gesture_texts.size() == 2:
+		
+		if gesture_texts[0] == "zero":
+			$/root/frogger/Bird1.speed = $/root/frogger/BGS.level_speed
+		elif gesture_texts[0] == "five":
+			$/root/frogger/Bird1.speed = 0
+			
+		if gesture_texts[1] == "zero":
+			$/root/frogger/Bird2.speed = $/root/frogger/BGS.level_speed
+		elif gesture_texts[1] == "five":
+			$/root/frogger/Bird2.speed = 0
 
 func end_round(player_won):
 	

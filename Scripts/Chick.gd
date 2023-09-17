@@ -1,4 +1,4 @@
-extends Area2D
+extends CharacterBody2D
 
 @export var player_index = 1
 var speed = 0
@@ -14,4 +14,3 @@ func _process(delta):
 	if position.y >= 380:
 			
 		Global.end_round(player_index)
-

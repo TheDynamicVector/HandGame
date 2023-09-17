@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8n0kj344tua6"]
+[gd_scene load_steps=5 format=3 uid="uid://1s6pnvgm73kx"]
 
-[ext_resource type="Texture2D" uid="uid://b6qull38ygb8h" path="res://sprites/Frogger1.png" id="1_1po54"]
+[ext_resource type="Texture2D" path="res://sprites/Frogger1.png" id="1_1po54"]
 [ext_resource type="Script" path="res://Scripts/gear.gd" id="2_0m8ju"]
-[ext_resource type="Texture2D" uid="uid://b2px8m2w5xif6" path="res://sprites/Car.png" id="3_rcjwv"]
+[ext_resource type="Texture2D" path="res://sprites/Car.png" id="3_rcjwv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jj265"]
 size = Vector2(130.307, 82.299)
