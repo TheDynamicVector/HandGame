@@ -18,5 +18,5 @@ var player_2_gestiures = []
 func _process(delta):
 	
 	var gesture_text = FileAccess.open("res://GestureData.txt", FileAccess.READ).get_as_text()
-	print(gesture_text)
+	#print(gesture_text)
 	
