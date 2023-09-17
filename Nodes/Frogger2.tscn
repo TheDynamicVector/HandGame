@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://csxuo54cmxn5c"]
+[gd_scene load_steps=5 format=3 uid="uid://b3hhwut1rx7g8"]
 
-[ext_resource type="Texture2D" uid="uid://bmgh4phfso0rm" path="res://sprites/Frogger2.png" id="1_iyiyx"]
-[ext_resource type="Script" path="res://Scripts/gear.gd" id="2_dd0h7"]
-[ext_resource type="Texture2D" uid="uid://b2px8m2w5xif6" path="res://sprites/Car.png" id="3_qt75q"]
+[ext_resource type="Texture2D" path="res://sprites/Frogger2.png" id="1_iyiyx"]
+[ext_resource type="Script" path="res://Scripts/Car.gd" id="2_ry77n"]
+[ext_resource type="Texture2D" path="res://sprites/Car.png" id="3_qt75q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jj265"]
 size = Vector2(130.307, 82.299)
@@ -14,8 +14,7 @@ texture = ExtResource("1_iyiyx")
 [node name="Car" type="Area2D" parent="."]
 position = Vector2(-1048.57, -142.857)
 scale = Vector2(1.2498, 1.2498)
-script = ExtResource("2_dd0h7")
-SPEED = -3
+script = ExtResource("2_ry77n")
 bound_original = 1000
 bound = -1000
 
@@ -30,8 +29,7 @@ shape = SubResource("RectangleShape2D_jj265")
 [node name="Car2" type="Area2D" parent="."]
 position = Vector2(2.85254, -119.999)
 scale = Vector2(1.2498, 1.2498)
-script = ExtResource("2_dd0h7")
-SPEED = -3
+script = ExtResource("2_ry77n")
 bound_original = 1000
 bound = -1000
 

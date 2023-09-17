@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8n0kj344tua6"]
+[gd_scene load_steps=5 format=3 uid="uid://1s6pnvgm73kx"]
 
-[ext_resource type="Texture2D" uid="uid://b6qull38ygb8h" path="res://sprites/Frogger1.png" id="1_1po54"]
-[ext_resource type="Script" path="res://Scripts/gear.gd" id="2_0m8ju"]
-[ext_resource type="Texture2D" uid="uid://b2px8m2w5xif6" path="res://sprites/Car.png" id="3_rcjwv"]
+[ext_resource type="Texture2D" path="res://sprites/Frogger1.png" id="1_1po54"]
+[ext_resource type="Script" path="res://Scripts/Car.gd" id="2_kf1bx"]
+[ext_resource type="Texture2D" path="res://sprites/Car.png" id="3_rcjwv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jj265"]
 size = Vector2(130.307, 82.299)
@@ -14,10 +14,9 @@ texture = ExtResource("1_1po54")
 [node name="Car" type="Area2D" parent="."]
 position = Vector2(-1008.57, 120)
 scale = Vector2(1.2498, 1.2498)
-script = ExtResource("2_0m8ju")
-SPEED = -3
-bound_original = -1000
-bound = 900
+script = ExtResource("2_kf1bx")
+bound_original = 1000
+bound = -1000
 
 [node name="Sprite2D" type="Sprite2D" parent="Car"]
 modulate = Color(1, 0.294118, 0.435294, 1)
@@ -30,8 +29,7 @@ shape = SubResource("RectangleShape2D_jj265")
 [node name="Car2" type="Area2D" parent="."]
 position = Vector2(-14.2859, 131.429)
 scale = Vector2(1.2498, 1.2498)
-script = ExtResource("2_0m8ju")
-SPEED = -3
+script = ExtResource("2_kf1bx")
 bound_original = 1000
 bound = -1000
 
@@ -46,9 +44,10 @@ shape = SubResource("RectangleShape2D_jj265")
 [node name="Car3" type="Area2D" parent="."]
 position = Vector2(971.429, -451.429)
 scale = Vector2(1.2498, 1.2498)
-script = ExtResource("2_0m8ju")
-bound_original = 900
+script = ExtResource("2_kf1bx")
+bound_original = 1000
 bound = -1000
+direction = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="Car3"]
 modulate = Color(1, 0.294118, 0.435294, 1)
@@ -62,9 +61,10 @@ shape = SubResource("RectangleShape2D_jj265")
 [node name="Car4" type="Area2D" parent="."]
 position = Vector2(760, -471.429)
 scale = Vector2(1.2498, 1.2498)
-script = ExtResource("2_0m8ju")
+script = ExtResource("2_kf1bx")
 bound_original = 1000
 bound = -1000
+direction = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="Car4"]
 modulate = Color(1, 0.294118, 0.435294, 1)

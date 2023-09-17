@@ -29,3 +29,6 @@ offset_bottom = -100.0
 theme_override_font_sizes/normal_font_size = 30
 text = "asdasdasdasd"
 scroll_active = false
+[gd_scene format=3 uid="uid://b5kjji63yprvd"]
+
+[node name="numbergame" type="Node2D"]
