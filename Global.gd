@@ -18,10 +18,12 @@ var default_scene = "numbergame"
 func _ready():
 	new_level()
 	await get_tree().create_timer(1).timeout
-	gameInitialize
+	gameInitialize = true
 
 var possibleNumbers = ['zero','one','two','three','four','five']
 var gameInitialize = false
+var cooldownP1 = false
+var cooldownP2 = false
 func _process(_delta):
 	
 	gesture_texts = FileAccess.open("res://GestureData.txt", FileAccess.READ).get_as_text().split(",")
@@ -36,10 +38,26 @@ func _process(_delta):
 			$/root/dinosaurgame/Goose2.jump()
 	
 	if game == 'numbergame' and gesture_texts.size() == 2 and gameInitialize: 
-		if gesture_texts[0] == possibleNumbers[$/root/numbergame.number]:
-			$root/numbegame.newRound = true
-		if gesture_texts[1] == possibleNumbers[$/root/numbergame.number]:
-			$root/numbegame.newRound = true
+		print(gesture_texts[0], possibleNumbers[$/root/numbergame.number1])
+		print(gesture_texts[1], possibleNumbers[$/root/numbergame.number2])
+		if gesture_texts[0] == possibleNumbers[$/root/numbergame.number1]:
+			$/root/numbergame.numberSpawn1.queue_free()
+			$/root/numbergame.numberSpawn2.queue_free()
+			if not cooldownP1:
+				cooldownP1 = true
+				$/root/numbergame.p1score += 1
+				cooldownP1 = false
+			$/root/numbergame.newRound = true
+
+			
+		if gesture_texts[1] == possibleNumbers[$/root/numbergame.number2]:
+			$/root/numbergame.numberSpawn1.queue_free()
+			$/root/numbergame.numberSpawn2.queue_free()
+			if not cooldownP2:
+				cooldownP2 = true
+				$/root/numbergame.p2score += 1
+				cooldownP1 = false
+			$/root/numbergame.newRound = true
 			
 			
 		
