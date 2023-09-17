@@ -116,6 +116,8 @@ with mp_hands.Hands(
         with open("GestureData.txt", 'w') as the_file:
             the_file.write([player_1_gesture, player_2_gesture])
 
+        print(gesture)
+
         mp_drawing.draw_landmarks(
             image,
             hand_landmarks,
