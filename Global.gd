@@ -18,7 +18,7 @@ var default_scene = "frogger"
 func _ready():
 	await get_tree().create_timer(1).timeout
 	gameInitialize = true
-var all_games = ["frogger", "dinasaurgame", "numbergame"]
+var all_games = ["frogger", "dinosaurgame", "numbersgame"]
 
 var possibleNumbers = ['zero','one','two','three','four','five']
 var gameInitialize = false
