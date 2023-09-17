@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://csxuo54cmxn5c"]
+
+[ext_resource type="Texture2D" uid="uid://bmgh4phfso0rm" path="res://sprites/Frogger2.png" id="1_iyiyx"]
+[ext_resource type="Script" path="res://Scripts/gear.gd" id="2_dd0h7"]
+[ext_resource type="Texture2D" uid="uid://b2px8m2w5xif6" path="res://sprites/Car.png" id="3_qt75q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jj265"]
+size = Vector2(130.307, 82.299)
+
+[node name="BG" type="Sprite2D"]
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("1_iyiyx")
+
+[node name="Car" type="Area2D" parent="."]
+position = Vector2(-1048.57, -142.857)
+scale = Vector2(1.2498, 1.2498)
+script = ExtResource("2_dd0h7")
+SPEED = -3
+bound_original = 1000
+bound = -1000
+
+[node name="Sprite2D" type="Sprite2D" parent="Car"]
+modulate = Color(1, 0.294118, 0.435294, 1)
+texture = ExtResource("3_qt75q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Car"]
+position = Vector2(1.14349, 4.57216)
+shape = SubResource("RectangleShape2D_jj265")
+
+[node name="Car2" type="Area2D" parent="."]
+position = Vector2(2.85254, -119.999)
+scale = Vector2(1.2498, 1.2498)
+script = ExtResource("2_dd0h7")
+SPEED = -3
+bound_original = 1000
+bound = -1000
+
+[node name="Sprite2D" type="Sprite2D" parent="Car2"]
+modulate = Color(1, 0.294118, 0.435294, 1)
+texture = ExtResource("3_qt75q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Car2"]
+position = Vector2(1.14349, 4.57216)
+shape = SubResource("RectangleShape2D_jj265")
+
+[connection signal="body_entered" from="Car" to="Car" method="_on_body_entered"]
+[connection signal="body_entered" from="Car2" to="Car2" method="_on_body_entered"]

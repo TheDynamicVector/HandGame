@@ -2,14 +2,17 @@ extends Area2D
 var rng = RandomNumberGenerator.new()
 var frozen = false
 
-var SPEED = 3
+@export var SPEED = 3
+@export var bound_original = 600
+@export var bound = -100
+
 const direction = -1
 func _physics_process(_delta):
 	
 	if not frozen:
 		position.x += direction * SPEED
-	if position.x < -100:
-		position.x = 600
+	if position.x < bound:
+		position.x = bound_original
 		if not frozen:
 			frozen = true
 			await get_tree().create_timer(randi()%3).timeout
