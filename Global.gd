@@ -18,7 +18,7 @@ var default_scene = "frogger"
 func _ready():
 	await get_tree().create_timer(1).timeout
 	gameInitialize = true
-var all_games = ["frogger", "dinasaur", "numbers"]
+var all_games = ["frogger", "dinasaurgame", "numbergame"]
 
 var possibleNumbers = ['zero','one','two','three','four','five']
 var gameInitialize = false
@@ -38,8 +38,7 @@ func _process(_delta):
 			$/root/dinosaurgame/Goose2.jump()
 	
 	if game == 'numbergame' and gesture_texts.size() == 2 and gameInitialize: 
-		print(gesture_texts[0], possibleNumbers[$/root/numbergame.number1])
-		print(gesture_texts[1], possibleNumbers[$/root/numbergame.number2])
+		
 		if gesture_texts[0] == possibleNumbers[$/root/numbergame.number1]:
 			$/root/numbergame.numberSpawn1.queue_free()
 			$/root/numbergame.numberSpawn2.queue_free()
