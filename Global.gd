@@ -46,7 +46,7 @@ func end_round(player_won):
 			pass
 func new_level():
 
-	get_tree().change_scene_to_file("res://Levels/d"+default_scene+".tscn")
+	get_tree().change_scene_to_file("res://Levels/"+default_scene+".tscn")
 	get_tree().reload_current_scene()
 	WinRoundUi.visible = false
 	get_tree().paused = false
