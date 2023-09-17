@@ -11,13 +11,17 @@ var game_started = false
 
 var gesture_texts = ["none", "none"]
 
-var game = "goose"
+var game = "numbergame"
 
-var default_scene = "dinosaurgame"
+var default_scene = "numbergame"
 
 func _ready():
 	new_level()
+	await get_tree().create_timer(1).timeout
+	gameInitialize
 
+var possibleNumbers = ['zero','one','two','three','four','five']
+var gameInitialize = false
 func _process(_delta):
 	
 	gesture_texts = FileAccess.open("res://GestureData.txt", FileAccess.READ).get_as_text().split(",")
@@ -30,6 +34,15 @@ func _process(_delta):
 			
 		if gesture_texts[1] == "zero":
 			$/root/dinosaurgame/Goose2.jump()
+	
+	if game == 'numbergame' and gesture_texts.size() == 2 and gameInitialize: 
+		if gesture_texts[0] == possibleNumbers[$/root/numbergame.number]:
+			$root/numbegame.newRound = true
+		if gesture_texts[1] == possibleNumbers[$/root/numbergame.number]:
+			$root/numbegame.newRound = true
+			
+			
+		
 
 func end_round(player_won):
 	

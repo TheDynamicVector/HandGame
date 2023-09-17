@@ -1,0 +1,167 @@
+[gd_scene load_steps=13 format=3 uid="uid://l750vscdvf80"]
+
+[ext_resource type="Texture2D" uid="uid://c1f07ij02kp8" path="res://sprites/bg.png" id="1_0hkbx"]
+[ext_resource type="Script" path="res://Scripts/CharacterBody2D.gd" id="1_a4l87"]
+[ext_resource type="Texture2D" uid="uid://vw24sm3c1xg5" path="res://sprites/duck.png" id="2_orvsf"]
+[ext_resource type="Script" path="res://Scripts/gear.gd" id="4_e2637"]
+[ext_resource type="Texture2D" uid="uid://b6flbo0s8mgws" path="res://sprites/grass.png" id="4_ks0x6"]
+[ext_resource type="Texture2D" uid="uid://bxcbrawfu875f" path="res://sprites/gear.png" id="5_s2iqi"]
+
+[sub_resource type="Animation" id="Animation_x0i2k"]
+resource_name = "walk"
+length = 0.4
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rby3a"]
+_data = {
+"walk": SubResource("Animation_x0i2k")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wgwuo"]
+size = Vector2(65, 63)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oiqrr"]
+size = Vector2(806.003, 59)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n6etn"]
+size = Vector2(836, 34.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4spm7"]
+size = Vector2(69.9711, 67.341)
+
+[node name="dinosaurgame" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(243, -114)
+scale = Vector2(5.18125, 1.91875)
+texture = ExtResource("1_0hkbx")
+
+[node name="Goose1" type="CharacterBody2D" parent="." groups=["Player1"]]
+script = ExtResource("1_a4l87")
+
+[node name="Sprite2D" type="Sprite2D" parent="Goose1"]
+texture = ExtResource("2_orvsf")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Goose1"]
+autoplay = "walk"
+libraries = {
+"": SubResource("AnimationLibrary_rby3a")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goose1"]
+position = Vector2(-10.5, 4.5)
+shape = SubResource("RectangleShape2D_wgwuo")
+
+[node name="Goose2" type="CharacterBody2D" parent="." groups=["Player2"]]
+script = ExtResource("1_a4l87")
+
+[node name="Sprite2D" type="Sprite2D" parent="Goose2"]
+position = Vector2(0, -179)
+texture = ExtResource("2_orvsf")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Goose2"]
+autoplay = "walk"
+libraries = {
+"": SubResource("AnimationLibrary_rby3a")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goose2"]
+position = Vector2(-10, -174)
+shape = SubResource("RectangleShape2D_wgwuo")
+
+[node name="Ground" type="StaticBody2D" parent="."]
+scale = Vector2(0.998415, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(230.001, 69.5)
+shape = SubResource("RectangleShape2D_oiqrr")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground"]
+position = Vector2(202.5, -123)
+scale = Vector2(4.65625, 0.2125)
+texture = ExtResource("4_ks0x6")
+
+[node name="Ground2" type="StaticBody2D" parent="."]
+position = Vector2(0, -28)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground2"]
+position = Vector2(247, -95.125)
+shape = SubResource("RectangleShape2D_n6etn")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Ground2"]
+position = Vector2(201.25, 94)
+scale = Vector2(4.65938, 0.3375)
+texture = ExtResource("4_ks0x6")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(244, -86)
+offset = Vector2(0.435, 0)
+zoom = Vector2(3, 3)
+
+[node name="gear2" type="Area2D" parent="."]
+position = Vector2(154.75, 19.25)
+scale = Vector2(0.540625, 0.540625)
+script = ExtResource("4_e2637")
+
+[node name="Sprite2D" type="Sprite2D" parent="gear2"]
+texture = ExtResource("5_s2iqi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gear2"]
+position = Vector2(-3.237, -7.86127)
+shape = SubResource("RectangleShape2D_4spm7")
+
+[node name="gear3" type="Area2D" parent="."]
+position = Vector2(150, -160)
+scale = Vector2(0.540625, 0.540625)
+script = ExtResource("4_e2637")
+
+[node name="Sprite2D" type="Sprite2D" parent="gear3"]
+texture = ExtResource("5_s2iqi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gear3"]
+position = Vector2(-3.237, -7.86127)
+shape = SubResource("RectangleShape2D_4spm7")
+
+[node name="gear4" type="Area2D" parent="."]
+position = Vector2(317, 22)
+scale = Vector2(0.540625, 0.540625)
+script = ExtResource("4_e2637")
+
+[node name="Sprite2D" type="Sprite2D" parent="gear4"]
+texture = ExtResource("5_s2iqi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gear4"]
+position = Vector2(-3.237, -7.86127)
+shape = SubResource("RectangleShape2D_4spm7")
+
+[node name="gear5" type="Area2D" parent="."]
+position = Vector2(321, -163)
+scale = Vector2(0.540625, 0.540625)
+script = ExtResource("4_e2637")
+
+[node name="Sprite2D" type="Sprite2D" parent="gear5"]
+texture = ExtResource("5_s2iqi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gear5"]
+position = Vector2(-3.237, -7.86127)
+shape = SubResource("RectangleShape2D_4spm7")
+
+[connection signal="body_entered" from="gear2" to="gear2" method="_on_body_entered"]
+[connection signal="body_entered" from="gear3" to="gear3" method="_on_body_entered"]
+[connection signal="body_entered" from="gear4" to="gear4" method="_on_body_entered"]
+[connection signal="body_entered" from="gear5" to="gear5" method="_on_body_entered"]
