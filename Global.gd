@@ -43,7 +43,7 @@ func _process(_delta):
 	if game == 'numbersgame' and gesture_texts.size() == 2 and gameInitialize: 
 		
 		var numbersgameparent = $/root/numbersgame
-		if gesture_texts[0] == possibleNumbers[numbersgameparent.number1] and not cooldownP1:
+		if gesture_texts[0] == possibleNumbers[numbersgameparent.number1] and not cooldownP1 and numbersgameparent.numberSpawn1 != null and numbersgameparent.numberSpawn2 != null:
 			numbersgameparent.numberSpawn1.queue_free()
 			numbersgameparent.numberSpawn2.queue_free()
 			numbersgameparent.p1score += 1
@@ -53,7 +53,7 @@ func _process(_delta):
 			numbersgameparent.newRound = true
 
 			
-		if gesture_texts[1] == possibleNumbers[numbersgameparent.number2] and not cooldownP2:
+		if gesture_texts[1] == possibleNumbers[numbersgameparent.number2] and not cooldownP2 and numbersgameparent.numberSpawn1 != null and numbersgameparent.numberSpawn2 != null:
 			numbersgameparent.numberSpawn1.queue_free()
 			numbersgameparent.numberSpawn2.queue_free()
 			numbersgameparent.p2score += 1
