@@ -90,7 +90,7 @@ with mp_hands.Hands(
             else:
                 fingers_open.append(True)
 
-        gestures = ["zero", "one", "two", "three", "four", "five", "ready", "l", "middle"]
+        gestures = ["zero", "one", "two", "three", "four", "five", "ready", "l", "middle", "three"]
         finger_combs = [
             [False, False, False, False, False], 
             [False, True, False, False, False],
@@ -100,7 +100,8 @@ with mp_hands.Hands(
             [True, True, True, True, True],
             [True, False, False, False, False],
             [True, True, False, False, False],
-            [False, False, True, False, False]
+            [False, False, True, False, False],
+            [False, False, True, True, True]
         ]
 
         if fingers_open in finger_combs:
